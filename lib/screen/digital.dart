@@ -37,7 +37,7 @@ class _HomescreenState extends State<Homescreen> {
           Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: Image.asset("assets/bg1.gif", fit: BoxFit.cover),
+            child: Image.asset("assets/bg.gif", fit: BoxFit.cover),
           ),
           Center(
             child: RichText(
