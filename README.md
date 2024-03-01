@@ -18,11 +18,19 @@ samples, guidance on mobile development, and a full API reference.
 <p>
 <img src= "https://github.com/Meshva30/digital_clock/assets/136339359/306fbb86-3218-4c96-bb00-e7ee32ac2519"width=22% heigh=35%>
 <img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/169394ee-3cd3-4102-b716-3d23f1b5ee50"width=22% heigh=35%>
+<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/5f423c2e-2df7-435c-b017-7ec2e2e6c9c0"width=22% heigh=35%>
 
 </p>
+
 
 
 https://github.com/Meshva30/digital_clock/assets/136339359/fca48969-a9bc-4d18-be8e-fe8092497575
 
 https://github.com/Meshva30/clock_app_1/assets/136339359/b50a147e-bf91-4927-8829-62193c0df5bc
+
+
+
+https://github.com/Meshva30/clock_app_1/assets/136339359/c51020af-9333-497a-8010-315e900976a2
+
+
 
