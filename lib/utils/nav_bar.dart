@@ -22,7 +22,7 @@ class _NavBarState extends State<NavBar> {
 
     home_screen(),
     Homescreen(),
-    Timer_clock(),
+    Timerapp(),
     stopwatch(),
   ];
 

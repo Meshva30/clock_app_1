@@ -1,116 +1,139 @@
 import 'dart:async';
-
-
 import 'package:flutter/material.dart';
 
-import 'analog.dart';
-
-class Timer_clock extends StatefulWidget {
-  const Timer_clock({super.key});
-
-  @override
-  State<Timer_clock> createState() => _Timer_clockState();
+void main() {
+  runApp(const Timerapp());
 }
 
-
-class _Timer_clockState extends State<Timer_clock> {
+class Timerapp extends StatefulWidget {
+  const Timerapp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context)
-  {
+  State<Timerapp> createState() => _TimerappState();
+}
 
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+DateTime dateTime = DateTime.now();
+
+int click = 0;
+
+class _TimerappState extends State<Timerapp> {
+  int minutes = 1;
+  late int second = (minutes * 60);
+  bool isRunning = false;
+  late Timer timer;
+
+  void startStop() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        dateTime = DateTime.now();
+        if (isRunning && second > 0) {
+          second--;
+        } else {
+          timer.cancel();
+          isRunning = false;
+          second = minutes * 60;
+        }
       });
     });
-    return Scaffold(
-      backgroundColor: Color(0xff121212),
-      appBar: AppBar(
-        title: Text('Timer Clock',style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.indigo.shade800,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
+  }
 
-                ),
-                child: Icon(Icons.settings,size: 20,)),
-          ),
-        ],
+  @override
+  Widget build(BuildContext context) {
+    int hour = dateTime.hour % 12;
+    hour = (hour == 0) ? 12 : hour;
+
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.indigo.shade800,
         centerTitle: true,
+        title: Text(
+          'Timer',
+          style: TextStyle(
+              color: Colors.white, fontSize: 25, fontWeight: FontWeight.w600),
+        ),
+        actionsIconTheme: const IconThemeData(color: Colors.white),
+        actions: [Icon(Icons.settings)],
       ),
-      body:
-      Container(
+      body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/b1.jpg"),fit: BoxFit.fill,
-            )
-        ),
+          image: AssetImage("assets/b1.jpg"),
+          fit: BoxFit.fill,
+        )),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(),
-            Stack(
-              children: [
-                Center(
-                  child: Container(
-                    height: 250,
-                    width: 250,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0xff424242),
-                        boxShadow: [
-                          BoxShadow(color: Colors.white,blurRadius: 5),
-                        ]
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Center(
-                    child: Container(
-                      height: 220,
-                      width: 220,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xff181818),
-                          boxShadow: [
-                            BoxShadow(color: Colors.grey,blurRadius: 2),
-                          ]
+            Container(
+              margin: EdgeInsets.all(70),
+              height: 350,
+              width: 350,
+              decoration: BoxDecoration(
+                color: Color(0xFF0A0A0A),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.grey,width: 3)
+              ),
+              child: Stack(
+                children: [
+                  Center(
+                    child: Text(
+                      '$second sec',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
                       ),
-                      child:
-                      Center(child: Text('00 : 00 : 00',style: TextStyle(color: Colors.white,fontSize: 25),)),
                     ),
                   ),
-                ),
-
-              ],
-            ),
-            Spacer(),
-            Padding(
-              padding:  EdgeInsets.only(bottom: 10),
-              child: Expanded(
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    boxShadow: [
-                      BoxShadow(color: Colors.white,blurRadius: 5),
-                    ],
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(Icons.play_arrow,color: Colors.white,),
-                ),
+                ],
               ),
             ),
+
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (isRunning) {
+                    isRunning = false;
+                    timer.cancel();
+                  } else {
+                    isRunning = true;
+                    startStop();
+                  }
+                });
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+
+                  ),
+                  Text(
+                    '5 minutes',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  ),
+                  Text(
+                    '15 minutes',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  isRunning = true;
+                });
+              },
+              child: Text('Start Timer'),
+            ),
+
+            // this is bottom nav bar
           ],
         ),
       ),
