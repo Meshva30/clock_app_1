@@ -23,17 +23,26 @@ class _home_screenState extends State<home_screen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: Text(
-          "Analog App",
-          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
-        ),
+        title: Text('Stop Watch',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.indigo.shade800,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+
+                ),
+                child: Icon(Icons.settings,size: 20,)),
+          ),
+        ],
         centerTitle: true,
-        elevation: 2,
-        shadowColor: Colors.white,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/b1.jpg"),fit: BoxFit.fill,
             )
@@ -48,11 +57,11 @@ class _home_screenState extends State<home_screen> {
                 width: 290,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       image: AssetImage("assets/clock.jpg"),fit: BoxFit.cover
                   ),
                   border: Border.all(width: 2,color: Colors.grey),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0xff1B2731),
                       blurRadius: 15,
@@ -64,7 +73,7 @@ class _home_screenState extends State<home_screen> {
                 ),
                 child: Stack(
                   children: [
-                    Center(
+                    const Center(
                       child: CircleAvatar(
                         radius: 10,
                         backgroundColor: Colors.grey,
@@ -89,7 +98,7 @@ class _home_screenState extends State<home_screen> {
                     Center(
                       child: Transform.rotate(
                         angle: dateTime.second * 6 * pi / 180,
-                        child: VerticalDivider(
+                        child: const VerticalDivider(
                           color: Colors.blue,
                           thickness: 3,
                           indent: 30,
@@ -100,7 +109,7 @@ class _home_screenState extends State<home_screen> {
                     Center(
                       child: Transform.rotate(
                         angle: dateTime.minute * 6 * pi / 180,
-                        child: VerticalDivider(
+                        child: const VerticalDivider(
                           color: Colors.blue,
                           thickness: 5,
                           indent: 50,
@@ -111,7 +120,7 @@ class _home_screenState extends State<home_screen> {
                     Center(
                       child: Transform.rotate(
                         angle: (dateTime.hour % 12 + dateTime.minute / 60) * 30 * pi / 180,
-                        child: VerticalDivider(
+                        child: const VerticalDivider(
                           color: Colors.black,
                           thickness: 8,
                           indent: 100,
@@ -123,12 +132,12 @@ class _home_screenState extends State<home_screen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Text(
               "${dateTime.hour % 12}:${dateTime.minute}:${dateTime.second}",
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 60, color: Colors.white),
             ),
           ],

@@ -1,140 +1,166 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class StopWatch extends StatefulWidget {
-  const StopWatch({Key? key}) : super(key: key);
+class stopwatch extends StatefulWidget {
+  const stopwatch({super.key});
 
   @override
-  State<StopWatch> createState() => _StopWatchState();
+  State<stopwatch> createState() => _stopwatchState();
 }
 
-class _StopWatchState extends State<StopWatch> {
-  Stopwatch stopwatch = Stopwatch();
-  late Timer timer;
 
+class _stopwatchState extends State<stopwatch> {
+  bool isRunning = false;
+  late Timer _timer;
+  late Stopwatch _stopwatch;
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(Duration(milliseconds: 30), Time);
+    _stopwatch = Stopwatch();
+    _timer = new Timer.periodic(new Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
   }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  void StartStop() {
+    if (_stopwatch.isRunning) {
+      _stopwatch.stop();
+    } else {
+      _stopwatch.start();
+    }
+    setState(() {});
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  backgroundColor: Colors.blue,
+     // backgroundColor: Color(0xff121212),
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: Text(
-          'Stopwatch',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-        ),
+        title: Text('Stop Watch',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.indigo.shade800,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Container(
+                height: 30,
+                width: 30,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+
+                ),
+                child: Icon(Icons.settings,size: 20,)),
+          ),
+        ],
         centerTitle: true,
-        elevation: 10,
-        shadowColor: Colors.black,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/bb.jpg"), fit: BoxFit.cover)),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
+              image: AssetImage("assets/b1.jpg"),fit: BoxFit.fill,
+            )
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Spacer(),
+            Stack(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      height: 280,
-                      width: 370,
-                      decoration: BoxDecoration(
-                        //color: Colors.black54,
+                Center(
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        //borderRadius: BorderRadius.all(Radius.circular(80)),
-                        border: Border.all(color: Colors.black, width: 3),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            formatTime(stopwatch.elapsed),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 50,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                        ],
-                      ),
+                        color: Color(0xff424242),
+                        boxShadow: [
+                          BoxShadow(color: Colors.white,blurRadius: 5),
+                        ]
                     ),
-                  ],
+                  ),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (stopwatch.isRunning) {
-                            stopwatch.stop();
-                          } else {
-                            stopwatch.start();
-                          }
-                        });
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.disabled)) {
-                              return Colors.black; // Color when button is disabled
-                            }
-                            return Colors.white; // Color when button is enabled
-                          },
-                        ),
+                Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Center(
+                    child: Container(
+                      height: 220,
+                      width: 220,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xff181818),
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey,blurRadius: 2),
+                          ]
                       ),
-                      child: Text(stopwatch.isRunning ? 'Stop' : 'Start',
-                          style: TextStyle(color: Colors.black)),
+                      child:
+                      Center(child: Text( formatTime(_stopwatch.elapsedMilliseconds),style: TextStyle(color: Colors.white,fontSize: 25),)),
                     ),
-                    SizedBox(width: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          stopwatch.reset();
-                        });
-                      },
-                      child: Text('Reset'),),
-                  ],
-
+                  ),
                 ),
 
-
-            ],
+              ],
             ),
-          ),
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: ()
+                  {
+                    setState(() {
+                      _stopwatch.start();
+                    });
+                  },
+                  child: Icon(Icons.play_arrow,color: Colors.black),
+                ),
+                ElevatedButton(
+                  onPressed: ()
+                  {
+                    setState(() {
+                      _stopwatch.stop();
+                    });
+                  },
+                  child: Icon(Icons.stop,color: Colors.black,),
+                ),
+                ElevatedButton(
+                  onPressed: ()
+                  {
+                    setState(() {
+                      _stopwatch.reset();
+                    });
+                  },
+                  child: Icon(Icons.restart_alt,color: Colors.black,),
+                ),
+
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
+}
+int start = 0;
+String formatTime(int second) {
 
-  void Time(Timer timer) {
-    if (stopwatch.isRunning) {
-      setState(() {});
-    }
-  }
+  var secs = second ~/ 1000;
+  var hours = (secs ~/ 3600).toString().padLeft(2, '0');
+  var minutes = ((secs % 3600) ~/ 60).toString().padLeft(2, '0');
+  var seconds = (secs % 60).toString().padLeft(2, '0');
+  return "$hours:$minutes:$seconds";
+}
 
-  String formatTime(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    String minutes = twoDigits(duration.inMinutes);
-    String seconds = twoDigits(duration.inSeconds.remainder(60));
-    String milliseconds = twoDigits((duration.inMilliseconds % 1000) ~/ 10);
-    return '$minutes:$seconds.$milliseconds';
-  }
+String format(int seconds) {
+  var milli = (seconds % 1000).toString().padLeft(3, '0');
+  return milli;
 }
