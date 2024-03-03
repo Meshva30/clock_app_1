@@ -23,7 +23,7 @@ class _home_screenState extends State<home_screen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Stop Watch',style: TextStyle(color: Colors.white),),
+        title: Text('Analog Watch',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.indigo.shade800,
         actions: [
           Padding(
@@ -135,10 +135,21 @@ class _home_screenState extends State<home_screen> {
             const SizedBox(
               height: 50,
             ),
-            Text(
-              "${dateTime.hour % 12}:${dateTime.minute}:${dateTime.second}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 60, color: Colors.white),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  style: const TextStyle(color: Colors.white,fontSize: 55,fontWeight: FontWeight.bold),
+                  children: [
+                    TextSpan(
+                      text: '${dateTime.hour % 12 == 0 ? 12 : dateTime.hour % 12} : ${dateTime.minute} : ${dateTime.second}',
+                    ),
+                    TextSpan(
+                      text: ' ${dateTime.hour < 12 ? 'AM' : 'PM'}',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
