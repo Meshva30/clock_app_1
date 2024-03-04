@@ -16,13 +16,17 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 <p>
-<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/6f90cdfd-5f38-4fe6-a503-994ba0a2bbca"width=22% heigh=35%>
-<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/dcdf2cc7-7784-4e85-a8b3-de7629deae1a"width=22% heigh=35%>
-<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/efae3c6e-3e69-4f42-8353-cbc01b2f6b4c"width=22% heigh=35%>
-<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/905be7d9-d08e-40aa-bc5b-202bf6d1c549"width=22% heigh=35%>
+<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/9b827f60-4dfa-4f86-a30e-98ff672667c3"width=22% heigh=35%>
+<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/f066e2fe-2f20-414e-bc13-922e64556d31"width=22% heigh=35%>
+<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/82993e48-6da4-41f2-b666-0e0d735830b2"width=22% heigh=35%>
+<img src= "https://github.com/Meshva30/clock_app_1/assets/136339359/f14441c4-449f-45e9-8668-8c9ab2556f0c"width=22% heigh=35%>
 
 
 </p>
+
+
+
+
 
 
 
