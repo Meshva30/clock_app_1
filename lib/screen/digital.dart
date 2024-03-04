@@ -25,7 +25,7 @@ class _HomescreenState extends State<Homescreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stop Watch',style: TextStyle(color: Colors.white),),
+        title: Text('Digital Clock',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.indigo.shade800,
         actions: [
           Padding(
